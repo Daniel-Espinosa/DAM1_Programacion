@@ -1,0 +1,2 @@
+
+Nombre: miguel, Edad: 19, Altura: 2.31
