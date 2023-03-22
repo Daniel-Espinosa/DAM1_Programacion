@@ -1,5 +1,7 @@
 
-public class Alumno {
+import java.io.Serializable;
+
+public class Alumno implements  Serializable{
     
     private String nombre;
     private double calificacion;
@@ -32,5 +34,5 @@ public class Alumno {
     public String toString() {
         return ("Nombre: " + nombre + " Nota: " + calificacion);
     }
-
+    
 }

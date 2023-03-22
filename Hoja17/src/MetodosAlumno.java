@@ -5,8 +5,7 @@ import java.io.*;
 public class MetodosAlumno {
     
     public static void grabar_alumnos(){
-        
-        
+
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("alumnos.dat"));
