@@ -1,13 +1,15 @@
 
 package ej7;
 
+import java.io.Serializable;
 
-public class Amigo { // falta serialise
+
+public class Amigo2 implements  Serializable{ // falta serialise
    
     private String nombre;
     private int telefono;
 
-    public Amigo(String nombre, int telefono) {
+    public Amigo2(String nombre, int telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
     }

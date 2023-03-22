@@ -15,7 +15,7 @@ public class AlmacenarObjetos {
        
         try {
             
-            fos = new FileOutputStream("amigos.txt"); //.dat
+            fos = new FileOutputStream("amigos.dat"); //.dat
          
             flujosalidaobjetos = new ObjectOutputStream(fos);
             

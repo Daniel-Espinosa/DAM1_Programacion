@@ -1,8 +1,11 @@
 package ej7;
 
 import java.io.*;
+import ej6.Amigo;
 
 public class RecuperarObjetos {
+    
+    //fallos por duplicidad de clase y que no sabe leer bien el paquete amigo ;)
 
     public static void main(String[] args) {
 
@@ -12,18 +15,18 @@ public class RecuperarObjetos {
 
         try {
 
-            fichero = new File("amigos.txt"); // .dat
+            fichero = new File("amigos.dat"); // .dat
 
             if (fichero.exists()) {
 
                 fis = new FileInputStream(fichero);
                 flujoentradaobjetos = new ObjectInputStream(fis);
 
-                while (true) { //este while es raro...
+                while (fis.available()>0) { //este while es raro...
                     Amigo a = (Amigo) flujoentradaobjetos.readObject();
                     System.out.println(a.toString());
                 }
-
+                
             }
         } catch (EOFException eof) {
             System.err.println("---------------------------------------");

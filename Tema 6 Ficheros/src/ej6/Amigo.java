@@ -1,8 +1,10 @@
 
 package ej6;
 
+import java.io.Serializable;
 
-public class Amigo { // falta serialises
+
+public class Amigo implements Serializable{ // falta serialises
    
     private String nombre;
     private int telefono;
@@ -27,7 +29,12 @@ public class Amigo { // falta serialises
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-    
+
+    @Override
+    public String toString() {
+        return nombre+" "+telefono;
+    }
+  
     
     
 }
