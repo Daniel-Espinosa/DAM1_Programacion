@@ -1,6 +1,5 @@
 
 import java.io.*;
-
 import java.util.*;
 
 public class Principal implements Serializable {
@@ -32,14 +31,14 @@ public class Principal implements Serializable {
         listaArticulos.add(b);
         */
         
+        //Prueba de guardar Fichero Parece que guardo ;)
+        //guardar_fichero(listaArticulos);
+        
         // comprobando que el linkedList tiene info
         for (Articulo i : listaArticulos) {
             System.out.println(i.toString());
         }
-        
-        //Prueba de guardar Fichero Parece que guardo ;)
-        //guardar_fichero(listaArticulos);
-        
+  
     }
     
     public static ArrayList leer_fichero(){
