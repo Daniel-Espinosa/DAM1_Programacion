@@ -4,6 +4,7 @@
  */
 package Iconos;
 
+import java.net.URL;
 import javax.swing.ImageIcon;
 
 /**
@@ -137,7 +138,12 @@ public class cambiarImagenes extends javax.swing.JFrame {
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
         //imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("jpg.jpg")));
-        imagen.setIcon(new ImageIcon("memes/homer.gif"));
+        String path = "/memes/homer.gif";
+        URL url = this.getClass().getResource(path);
+        ImageIcon icon = new ImageIcon(url);
+        
+        imagen.setIcon(icon);
+        
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
