@@ -22,7 +22,7 @@ public class Ej9 {
                 contLineas++;
                 String [] arrayPalabras = cadena.split(" ");
                 System.out.println("La " + contLineas + "º linea tiene " + (arrayPalabras.length) + " palabras");
-                
+                System.out.println(cadena);
             }
             
         } catch (Exception e) {

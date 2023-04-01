@@ -1,0 +1,3 @@
+se le pasa una cadena como entrada
+si se quiere ir añadiendo mas de una linea toca poner un salto de linea
+otra linea
