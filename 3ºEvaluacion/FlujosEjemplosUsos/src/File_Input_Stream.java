@@ -16,13 +16,16 @@ public class File_Input_Stream {
                fis=new FileInputStream("fosEjemploDAT.dat");
                ois=new ObjectInputStream(fis);
 
+               //se utiliza el available del FIS para saber el tamaño del fichero y que lo recorra.
                 while (fis.available()>0) {
                     ObjetoPrueba a = (ObjetoPrueba) ois.readObject();
                     System.out.println(a.toString());
+                }
                 
-
-            }
-        
+                //OJO SOLO SE PUEDE UTILIZAR EL READ Y EL AVAILABLE UNA SOLA VES ES MEJOR USARLO COMO METODOS. ya que estos los abren y los cierran los Flujos.
+                //como en la tarea 6_7 de alumnos.
+                //RECUERDA QUE ES MEJOR QUE LEER OBJETOS ES ALMACENARLOS EN UN ARRAYLIST O LINKED LIST COMO EN LA TAREA 6_7
+                
         } catch (FileNotFoundException fnf) {
             System.err.println("Fichero no encontrado" + fnf);
         } catch (IOException ioe) {
@@ -42,7 +45,7 @@ public class File_Input_Stream {
         }
 
         
-        // PARA TXT ES MEJOR USAR EL FILE READER
+// PARA TXT ES MEJOR USAR EL FILE READER
         FileInputStream fis2 = null;
         
         //declaro dos variables tipo char y String para poder almacenar los datos;
