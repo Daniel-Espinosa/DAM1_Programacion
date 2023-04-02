@@ -1,6 +1,7 @@
 
 import java.io.*;
 
+
 public class File_Input_Stream {
 
     public static void main(String[] args) {
@@ -11,10 +12,35 @@ public class File_Input_Stream {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
 
+           try {
+               fis=new FileInputStream("fosEjemploDAT.dat");
+               ois=new ObjectInputStream(fis);
+
+                while (fis.available()>0) {
+                    ObjetoPrueba a = (ObjetoPrueba) ois.readObject();
+                    System.out.println(a.toString());
+                
+
+            }
         
-        
-        
-        
+        } catch (FileNotFoundException fnf) {
+            System.err.println("Fichero no encontrado" + fnf);
+        } catch (IOException ioe) {
+            System.err.println("Se ha producido una IoException" + ioe);
+        } catch (ClassNotFoundException ex) {
+               System.err.println("No se ha podido leer el objeto porque me falta la clase");
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                    ois.close();
+                }
+            } catch (IOException ioe) {
+                System.err.println("Ha ocurrido una IOException");
+            }
+
+        }
+
         
         // PARA TXT ES MEJOR USAR EL FILE READER
         FileInputStream fis2 = null;
