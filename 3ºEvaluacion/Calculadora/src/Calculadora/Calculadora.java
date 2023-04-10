@@ -14,14 +14,15 @@ public class Calculadora extends javax.swing.JFrame {
     //VARIABLES PARA ALMACENAR LOS VALORES;
     private double valor1 = 0, valor2 = 0, resultado = -1;
     private int operacion = -1;
+    boolean control = false;
     /* equivalencia del valor de operaciones
         1 para suma
         2 para resta
         3 para multiplicacion
         4 para division
         5 para raiz cuadrada
-    */
-    private int maxCaracteres = 15;
+     */
+    private int maxCaracteres = 20;
 
     public Calculadora() {
         initComponents();
@@ -273,7 +274,7 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(number7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,7 +312,7 @@ public class Calculadora extends javax.swing.JFrame {
                     .addComponent(suma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(multiplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,8 +363,14 @@ public class Calculadora extends javax.swing.JFrame {
         output.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         output.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         output.setEnabled(false);
+        output.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outputActionPerformed(evt);
+            }
+        });
 
         input.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        input.setText("0");
         input.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         input.setEnabled(false);
 
@@ -372,11 +379,13 @@ public class Calculadora extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1, Short.MAX_VALUE))
+                    .addComponent(input)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(output)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,52 +426,66 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void sumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaActionPerformed
         // TODO add your handling code here:
-        try {
-            if (!input.getText().isEmpty()) {
-                valor1 = Double.parseDouble(input.getText());
-                operacion = 1;
-                output.setText(valor1 + " +");
-                input.setText("");
-               
-                
-   // SEGIR POR AQUI!             
-            }/* else if (!valor1 != ){
-                
-            }*/
-        } catch (NumberFormatException e) {
-            output.setText("ERROR");
-        }
-        
+        limpiarError();
+        capturarValorInput();
+        operacion = 1;
+        output.setText(valor1 + " +");
     }//GEN-LAST:event_sumaActionPerformed
 
     private void restaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        capturarValorInput();
+        operacion = 2;
+        output.setText(valor1 + " -");
+        /*
         try {
-            if (!input.getText().isEmpty()) {
+            if (!input.getText().isEmpty() && output.getText().isEmpty()) { // si el input tiene valor y el output no tiene nada sube el valor y coloca el simbolo
                 valor1 = Double.parseDouble(input.getText());
-                operacion = 1;
                 output.setText(valor1 + " -");
-                input.setText("");
+                input.setText("0");
+                operacion = 2;
+            } else if (!input.getText().isEmpty() && !output.getText().isEmpty()) { //si el input tiene valor y el output ya tiene valor realiza la operacion y limpia el input
+                valor2 = Double.parseDouble(input.getText());
+                operaciones();
+                output.setText(resultado + " -");
+                input.setText("0");
+                operacion = 2;
+            } else if (input.getText().isEmpty() && !output.getText().isEmpty()) { //si el input esta vacio y el output ya tiene valor cambia la operacion
+                output.setText(valor1 + " -");
+                operacion = 2;
             }
         } catch (NumberFormatException e) {
             output.setText("ERROR");
         }
+        */
     }//GEN-LAST:event_restaActionPerformed
 
     private void multiplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiplicacionActionPerformed
         // TODO add your handling code here:
-        //resultado.setText(MetodosCalculadora.multiplicar(valor1.getText(), valor2.getText()));
+        limpiarError();
+        capturarValorInput();
+        operacion = 3;
+        output.setText(valor1 + " *");
+
     }//GEN-LAST:event_multiplicacionActionPerformed
 
     private void divisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divisionActionPerformed
         // TODO add your handling code here:
-        //resultado.setText(MetodosCalculadora.dividir(valor1.getText(), valor2.getText()));
+        limpiarError();
+        capturarValorInput();
+        operacion = 4;
+        output.setText(valor1 + " /");
     }//GEN-LAST:event_divisionActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
-        input.setText("");
+        input.setText("0");
         output.setText("");
+        valor1 = 0;
+        valor2 = 0;
+        resultado = -1;
+        operacion = -1;
     }//GEN-LAST:event_resetActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -472,10 +495,17 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void raizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        capturarValorInput();
+        operacion =5;
+        operaciones();
+        output.setText(valor1 + "");
     }//GEN-LAST:event_raizActionPerformed
 
     private void number1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number1ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "1");
         }
@@ -483,6 +513,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number2ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "2");
         }
@@ -490,6 +522,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number3ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "3");
         }
@@ -497,6 +531,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number4ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "4");
         }
@@ -504,6 +540,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number5ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "5");
         }
@@ -511,12 +549,16 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number6ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "6");
         }
     }//GEN-LAST:event_number6ActionPerformed
 
     private void number7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number7ActionPerformed
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "7");
         }
@@ -524,6 +566,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number8ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "8");
         }
@@ -531,6 +575,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number9ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "9");
         }
@@ -538,6 +584,8 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void number0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_number0ActionPerformed
         // TODO add your handling code here:
+        limpiarError();
+        limparCerosIzquierda();
         if (input.getText().length() < maxCaracteres) {
             input.setText(input.getText() + "0");
         }
@@ -545,17 +593,114 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void comaButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comaButonActionPerformed
         // TODO add your handling code here:
+        limpiarError();
         if (input.getText().length() < maxCaracteres) {
             if (input.getText().length() == 0) {
                 input.setText("0.");
-            } else if (!input.getText().contains("."))
-                input.setText(input.getText() + ".");                
+            } else if (!input.getText().contains(".")) {
+                input.setText(input.getText() + ".");
+            }
         }
     }//GEN-LAST:event_comaButonActionPerformed
 
     private void igualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_igualActionPerformed
         // TODO add your handling code here:
+        if (operacion != -1) {
+            try {
+                if (!input.getText().isEmpty()&& !input.getText().equalsIgnoreCase("0")) {
+                    valor2 = Double.parseDouble(input.getText());
+                }
+                operaciones();
+                if (control) {
+                    output.setText(resultado + "");
+                    input.setText("0");
+                    control = true;
+                }
+            } catch (NumberFormatException e) {
+                input.setText("ERROR");
+            }
+            
+        } 
+
     }//GEN-LAST:event_igualActionPerformed
+
+    private void outputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outputActionPerformed
+
+    private void operaciones() {
+        switch (operacion) {
+            case 1://suma                
+                resultado = valor1 + valor2;
+                valor1 = resultado;
+                control = true;
+                break;
+            case 2://resta
+                resultado = valor1 - valor2;
+                valor1 = resultado;
+                control = true;
+                break;
+            case 3://multiplicacion
+                resultado = valor1 * valor2;
+                valor1 = resultado;
+                control = true;
+                break;
+            case 4://division
+                if (valor2 != 0) {
+                    resultado = valor1 / valor2;
+                    valor1 = resultado;
+                    control = true;
+                } else {
+                    valor1 = 0;
+                    valor2 = 0;
+                    resultado = 0;
+                    operacion = -1;
+                    output.setText("No puedes div entre 0");
+                    input.setText("ERROR");
+                    control = false;
+                }
+                break;
+            case 5://RaizCuadrada
+                if (valor1 >0) {
+                    resultado = Math.sqrt(valor1);
+                    valor1 = resultado;
+                } else {
+                    output.setText("No puedes ser < 0");
+                    input.setText("ERROR");
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    // metodo para capturar el valor del input
+    public void capturarValorInput(){
+        try {
+            if (!input.getText().isEmpty() && !input.getText().equalsIgnoreCase("ERROR") && output.getText().isEmpty()) { // si el input tiene valor y el output no tiene nada sube el valor y coloca el simbolo
+                valor1 = Double.parseDouble(input.getText());
+                input.setText("0");
+            }
+        } catch (NumberFormatException e) {
+            output.setText("ERROR");
+        }
+    }
+    
+    
+    //metodo para limpiar si tiene un error.
+    public void limpiarError(){
+        if (input.getText().equalsIgnoreCase("ERROR")){// si tiene un error limpia para volver a colocar numeros ;)
+            input.setText("0");
+            output.setText("");
+        }
+    }
+    
+    //metodo para quitar ceros a la izquierda
+    public void limparCerosIzquierda (){
+        if (input.getText().equalsIgnoreCase("0")) {
+            input.setText("");
+        }
+    }
 
     /**
      * @param args the command line arguments
