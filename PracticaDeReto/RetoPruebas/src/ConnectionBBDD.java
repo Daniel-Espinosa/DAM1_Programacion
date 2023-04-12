@@ -15,7 +15,10 @@ public class ConnectionBBDD {
     private ConnectionBBDD() {
 
         try {
-            Class.forName(JDBC_DRIVER).newInstance();
+            //Esta linea el de pildoras informaticas no la usa y le funciona la conexion y el video es de hace 7 años
+            //Curso Java. Acceso a BBDD. JDBC II. Vídeo 202
+            //https://www.youtube.com/watch?v=TipyOAYGsdc
+            Class.forName(JDBC_DRIVER).newInstance(); 
             con = DriverManager.getConnection(DB_URL, USER, PASS);
             if (con != null) {
                 System.out.println("coneccion realizada");
