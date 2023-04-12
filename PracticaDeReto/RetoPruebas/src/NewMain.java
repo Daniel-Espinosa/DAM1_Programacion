@@ -3,9 +3,6 @@ import java.sql.*;
 
 public class NewMain {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         
         // realizamos la coneccion y probamos que funciona.
@@ -17,7 +14,10 @@ public class NewMain {
         
         //añado un coche
         metodosCoche.añadirCocheBBDD();
-
+        
+        //leer BBDD e imprimir tuplas.
+        metodosCoche.leerCoches();
+        
     }
     
 }

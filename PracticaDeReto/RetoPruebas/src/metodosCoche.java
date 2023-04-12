@@ -17,22 +17,41 @@ public class metodosCoche {
             c1.setModelo("Ibiza");
             c1.setColor("Rojo");
             
-            String insertarCoche = "insert into coche values(?,?,?,?,?)";
+            String insertarCoche = "insert into coche(matricula,modelo,marca,color) values(?,?,?,?)";
             
             PreparedStatement ps = conexion.prepareStatement(insertarCoche);
             
-            ps.setString(1, "DEFAULT" ); // primary Key auto incremental no se la quiero pasar.. eso o modifico el insert values y le digo que campos...
-            ps.setString(2, c1.getMatricula());
-            ps.setString(3, c1.getModelo());
-            ps.setString(4, c1.getMarca());
-            ps.setString(5, c1.getColor());
+            ps.setString(1, c1.getMatricula());
+            ps.setString(2, c1.getModelo());
+            ps.setString(3, c1.getMarca());
+            ps.setString(4, c1.getColor());
             
             ps.executeUpdate();
             
-            
+            System.out.println("datos insertados ;)");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+    }
+    
+    public static void leerCoches (){
+        
+        Connection conexion = ConnectionBBDD.getInstance().getConnection();
+        try {
+            String tablaCoches = "select * from coche";
+            
+            Statement sentencia = conexion.createStatement();
+            ResultSet rs = sentencia.executeQuery(tablaCoches);
+        
+            while (rs.next()) {
+                System.out.println(rs.getInt(1)+ " " + rs.getString(2)+ " " +rs.getString(3)+ " " +rs.getString(4)+ " "+rs.getString(5));                
+            }
+            
+            
+        } catch (SQLException e) {
+            System.err.println("ERROR AL LEER");
+        }
+        
         
         
     }
