@@ -25,7 +25,6 @@ public class Ejercicio3 {
         try {
             
             for (int i = 0; i < cadena.length(); i++) {
-                
                 for (int j = 0; j < listado.length; j++) {
                     for (int k = 0; k < listado[j].length; k++) {
                         if (listado[j][k].equalsIgnoreCase(""+cadena.charAt(i))) {
@@ -37,7 +36,7 @@ public class Ejercicio3 {
                 
             }
             //sout para comprobar que funciona
-            //System.out.println(almacenCaracteres);
+            System.out.println(almacenCaracteres);
             //guarda el archivo
             fw = new FileWriter(archivo);
             fw.write(almacenCaracteres);

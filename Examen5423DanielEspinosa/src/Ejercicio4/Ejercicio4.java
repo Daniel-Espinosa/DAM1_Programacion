@@ -159,6 +159,7 @@ public class Ejercicio4 extends javax.swing.JFrame {
         if (jRadioButton1.isSelected()) {
             System.out.println("SI");
             //no logro cambiar el mensaje de si esta activado o no en el JOptionPane
+            JOptionPane.showMessageDialog(rootPane, "Hola Mundo");
             JOptionPane.showMessageDialog(rootPane, evt);
         }
         if (jRadioButton2.isSelected()) {
