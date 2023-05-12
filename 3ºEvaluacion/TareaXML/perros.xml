@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<perros>
+<perro>
+<nombre>Carlitos</nombre>
+<raza>Carlino</raza>
+</perro>
+<perro>
+<nombre>Lola</nombre>
+<raza>Pointer</raza>
+</perro>
+<perro>
+<nombre>Aria</nombre>
+<raza>Braco</raza>
+</perro>
+</perros>

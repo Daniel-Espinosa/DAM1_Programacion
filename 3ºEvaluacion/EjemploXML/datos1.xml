@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<perros>
+<perro>
+<nombre>Paco</nombre>
+<raza>Pointer</raza>
+</perro>
+<perro>
+<nombre>Gato</nombre>
+<raza>azul</raza>
+</perro>
+</perros>
