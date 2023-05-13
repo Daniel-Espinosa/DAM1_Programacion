@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paises>
+  <pais>
+    <nombre>Egipto</nombre>
+    <capital>El Cairo</capital>
+  </pais>
+  <pais>
+    <nombre>Italia</nombre>
+    <capital>Roma</capital>
+  </pais>
+  <pais>
+    <nombre>Argentina</nombre>
+    <capital>Buenos Aires</capital>
+  </pais>
+  <capital pais="Italia">
+      <nombre>Aregentina</nombre>   
+      <poblacion>10000</poblacion>
+  </capital>
+  <capital pais="Argentina">
+      <nombre>Roma</nombre>   
+      <poblacion>20000</poblacion>
+  </capital>
+</paises>
+
