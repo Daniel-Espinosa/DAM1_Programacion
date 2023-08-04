@@ -48,11 +48,11 @@ public class Ejemplo5 {
                 System.out.println("Quieres modificar la nota de: " + e2.getNombre() + " con nota: " + e2.getNota() + " Y / N");
                 if ("Y".equalsIgnoreCase(aux)) {
 
-                    bd.delete(e2);
+                    //bd.delete(e2);
                     System.out.println("Introduce la nota");
                     Scanner scNum = new Scanner(System.in);
                     nota = scNum.nextInt();
-                    bd.store(new Estudiante(nombre, nota));
+                    bd.store(e2);
                     
                 }
 
